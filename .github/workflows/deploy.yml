@@ -19,7 +19,8 @@ jobs:
 
   build:
     name: Build de producción
-    if: github.ref == 'refs/heads/main'
+    # La plantilla solo se verifica; publican los repos de negocio creados desde ella.
+    if: github.ref == 'refs/heads/main' && !github.event.repository.is_template
     needs: verify
     runs-on: ubuntu-24.04
     steps:
